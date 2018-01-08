@@ -1,0 +1,25 @@
+﻿<Window x:Class="WPFRentACar.Forme.IzaberiteVozilo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFRentACar.Forme"
+        mc:Ignorable="d"
+        Title="Izaberite Vozilo" Height="350" Width="300">
+	<Grid>
+		<ComboBox HorizontalAlignment="Left" Margin="150,165,0,0" VerticalAlignment="Top" Width="120" Name="cbVozac" DisplayMemberPath="Vozac" SelectedValuePath="VozacID"/>
+		<ComboBox HorizontalAlignment="Left" Margin="151,210,0,0" VerticalAlignment="Top" Width="120" Name="cbDodatnaOprema" DisplayMemberPath="DodatnaOprema" SelectedValuePath="DodatnaOpremaID"/>
+		<Label Content="Vozac" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
+		<Label Content="Dodatna oprema" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="26" Margin="20,270,0,0" VerticalAlignment="Top" Width="100" Click="btnSacuvaj_Click"/>
+		<Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Height="26" Margin="170,270,0,0" VerticalAlignment="Top" Width="100" Click="btnOtkazi_Click"/>
+		<ComboBox HorizontalAlignment="Left" Margin="151,120,0,0" VerticalAlignment="Top" Width="120" Name="cbModel" DisplayMemberPath="Model" SelectedValuePath="ModelID"/>
+		<ComboBox HorizontalAlignment="Left" Margin="151,75,0,0" VerticalAlignment="Top" Width="120" Name="cbMarka" DisplayMemberPath="Marka" SelectedValuePath="MarkaID"/>
+		<ComboBox HorizontalAlignment="Left" Margin="151,30,0,0" VerticalAlignment="Top" Width="120" Name="cbTip" DisplayMemberPath="TipVozila" SelectedValuePath="TipVozilaID"/>
+		<Label Content="Tip Vozila" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+		<Label Content="Marka Vozila" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
+		<Label Content="Model Vozila" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top"/>
+
+
+	</Grid>
+</Window>
