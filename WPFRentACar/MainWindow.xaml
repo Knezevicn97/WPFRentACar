@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFRentACar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="#ffffff">
+        Title="Rent a car" Height="350" Width="600" Background="#ffffff">
     <Grid>
-        
-    </Grid>
+		<DataGrid Name="CentralniGrid"
+				  VerticalAlignment="Center"
+				  HorizontalAlignment="Center"
+				  Height="Auto" Width="Auto"
+				  AlternatingRowBackground="LightCyan"
+				  SelectionMode="Single"
+				  SelectionUnit="FullRow"
+				  IsReadOnly="True" />
+		<StackPanel HorizontalAlignment="Center" Height="30" VerticalAlignment="Top" Width="auto" Orientation="Horizontal">
+			<Button x:Name="btnVozila" Content="Vozila" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnVozila_Click"/>
+			<Button x:Name="btnKorisnici" Content="Korisnici" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnKorisnici_Click"/>
+			<Button x:Name="btnVozaci" Content="Vozaci" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnVozaci_Click"/>
+			<Button x:Name="btnMarke" Content="Marke" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnMarke_Click"/>
+			<Button x:Name="btnModeli" Content="Modeli" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnModeli_Click"/>
+			<Button x:Name="btnTipoviVozila" Content="Tipovi vozila" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Height="30" Click="btnTipoviVozila_Click"/>
+
+		</StackPanel>
+		<StackPanel HorizontalAlignment="Center" Height="30"  VerticalAlignment="Bottom" Width="352" Orientation="Horizontal">
+			<Button x:Name="btnDodajKorisnika" Content="Dodaj korisnika" Width="117" Click="btnDodajKorisnika_Click"/>
+			<Button x:Name="btnIzmeniKorisnika" Content="Izmeni korisnika" Width="117" Click="btnIzmeniKorisnika_Click"/>
+			<Button x:Name="btnObrisiKorisnika" Content="Obrisi korisnika" Width="117" Click="btnObrisiKorisnika_Click"/>
+
+			<Button x:Name="btnDodajVozilo" Content="Dodaj vozilo" Width="117" Click="btnDodajVozilo_Click" />
+			<Button x:Name="btnIzmeniVozilo" Content="Izmeni vozilo" Width="117" Click="btnIzmeniVozilo_Click" />
+			<Button x:Name="btnObrisiVozilo" Content="Obrisi vozilo" Width="117" Click="btnObrisiVozilo_Click"/>
+
+			<Button x:Name="btnDodajVozaca" Content="Dodaj vozaca" Width="117" Click="btnDodajVozaca_Click" />
+			<Button x:Name="btnIzmeniVozaca" Content="Izmeni vozaca" Width="117" Click="btnIzmeniVozaca_Click" />
+			<Button x:Name="btnObrisiVozaca" Content="Obrisi vozaca" Width="117" Click="btnObrisiVozaca_Click"/>
+
+			<Button x:Name="btnDodajMarku" Content="Dodaj marku" Width="117" Click="btnDodajMarku_Click"/>
+			<Button x:Name="btnIzmeniMarku" Content="Izmeni marku" Width="117" Click="btnIzmeniMarku_Click" />
+			<Button x:Name="btnObrisiMarku" Content="Obrisi marku" Width="117" Click="btnObrisiMarku_Click"/>
+
+			<Button x:Name="btnDodajModel" Content="Dodaj model" Width="117" Click="btnDodajModel_Click" />
+			<Button x:Name="btnIzmeniModel" Content="Izmeni model" Width="117" Click="btnIzmeniModel_Click" />
+			<Button x:Name="btnObrisiModel" Content="Obrisi model" Width="117" Click="btnObrisiModel_Click"/>
+
+			<Button x:Name="btnDodajTipVozila" Content="Dodaj tip vozila" Width="117" Click="btnDodajTipVozila_Click" />
+			<Button x:Name="btnIzmeniTipVozila" Content="Izmeni tip vozila" Width="117" Click="btnIzmeniTipVozila_Click" />
+			<Button x:Name="btnObrisiTipVozila" Content="Obrisi tip vozila" Width="117" Click="btnObrisiTipVozila_Click"/>
+		</StackPanel>
+
+	</Grid>
+	
 </Window>
