@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFRentACar.Forme"
         mc:Ignorable="d"
-        Title="Dodan Novog Korisnika" Height="510.882" Width="468.918" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Dodaj Novog Korisnika" Height="510.882" Width="468.918" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 	<Grid>
 		<Label x:Name="label" Content="Ime:" HorizontalAlignment="Left" Height="26" Margin="10,35,0,0" VerticalAlignment="Top" Width="160"/>
 		<TextBox x:Name="txtIme" HorizontalAlignment="Left" Height="26" Margin="191,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>

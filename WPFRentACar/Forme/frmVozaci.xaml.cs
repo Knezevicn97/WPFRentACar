@@ -11,17 +11,65 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace WPFRentACar.Forme
 {
 	/// <summary>
-	/// Interaction logic for frmVozaci.xaml
+	/// Interaction logic for DodajVozaca.xaml
 	/// </summary>
-	public partial class frmVozaci : Window
+	public partial class DodajVozaca : Window
 	{
-		public frmVozaci()
+		SqlConnection konekcija = Konekcija.KreirajKonekciju();
+
+		public DodajVozaca()
 		{
 			InitializeComponent();
+			txtImeVozaca.Focus();
 		}
+		private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				konekcija.Open();
+				if (MainWindow.azuriraj)
+				{
+					DataRowView red = (DataRowView)MainWindow.selektovan;
+					string update = @"Update tblVozac Set ImeVozaca ='" + txtImeVozaca.Text + "' , PrezimeVozaca = '" + txtPrezimeVozaca.Text +
+						"', BrojVozacke = '" + txtBrojVozacke.Text +
+						"' Where VozacID =" + red["ID"];
+					SqlCommand cmd = new SqlCommand(update, konekcija);
+					cmd.ExecuteNonQuery();
+					MainWindow.selektovan = null;
+					this.Close();
+				}
+				else
+				{
+					string insert = @"insert into tblVozac(ImeVozaca)
+                                values ('" + txtImeVozaca.Text + "');";
+					SqlCommand cmd = new SqlCommand(insert, konekcija);
+					cmd.ExecuteNonQuery();
+					this.Close();
+				}
+			}
+			catch (SqlException)
+			{
+				MessageBox.Show("Unos odredjenih vrednosti nije validan.", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			finally
+			{
+				if (konekcija != null)
+				{
+					konekcija.Close();
+				}
+			}
+		}
+
+		private void btnOtkazi_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
+
 	}
 }

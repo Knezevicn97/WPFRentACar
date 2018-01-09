@@ -25,7 +25,6 @@ namespace WPFRentACar.Forme
 
 		public DodajKorisnika()
 		{
-	
 			InitializeComponent();
 			txtIme.Focus();
 		}
