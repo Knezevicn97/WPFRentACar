@@ -87,6 +87,7 @@ namespace WPFRentACar
 			btnObrisiTipVozila.Visibility = Visibility.Collapsed;
 
 			PocetniDataGrid(CentralniGrid);
+			//inner
 
 			
 		}
@@ -121,7 +122,7 @@ namespace WPFRentACar
 			try
 			{
 				konekcija.Open();
-
+				//inner
 				string upit = "select KorisnikID as ID, ImeKorisnika as Ime, PrezimeKorisnika as Prezime, JMBG," +
 								" Adresa , BrojVozacke, Kontakt, Grad from tblKorisnik";
 				SqlDataAdapter dataAdapter = new SqlDataAdapter(upit, konekcija);
@@ -174,7 +175,7 @@ namespace WPFRentACar
 			{
 				konekcija.Open();
 
-				string upit = "select VozacID as ID, ImeVozaca , PrezimeVozaca ,  from tblVozac";
+				string upit = "select VozacID as ID, ImeVozaca as Ime , PrezimeVozaca as Prezime, BrojVozacke as Vozacka from tblVozac";
 				SqlDataAdapter dataAdapter = new SqlDataAdapter(upit, konekcija);
 				DataTable dt = new DataTable("Vozac");
 				dataAdapter.Fill(dt);
@@ -628,15 +629,17 @@ namespace WPFRentACar
 				konekcija.Open();
 				DataRowView red = (DataRowView)CentralniGrid.SelectedItems[0];
 				selektovan = red;
-				string upit = "Select Marka from tblMarka where MarkaID=" + red["ID"];
+				string upit = "Select * from tblMarka where MarkaID=" + red["ID"];
 
 				SqlCommand komanda = new SqlCommand(upit, konekcija);
 				SqlDataReader citac = komanda.ExecuteReader();
 
 				while (citac.Read())
 				{
-					prozor.ShowDialog();
+					prozor.txtNazivMarke.Text = citac["Marka"].ToString();
+					
 				}
+				prozor.ShowDialog();
 			}
 			catch (ArgumentOutOfRangeException)
 			{
@@ -787,7 +790,7 @@ namespace WPFRentACar
 				konekcija.Open();
 				DataRowView red = (DataRowView)CentralniGrid.SelectedItems[0];
 				selektovan = red;
-				string upit = "Select Tip,  from tblTipVozila where TipVozilaID=" + red["ID"];
+				string upit = "Select * from tblTipVozila where TipVozilaID=" + red["ID"];
 
 				SqlCommand komanda = new SqlCommand(upit, konekcija);
 				SqlDataReader citac = komanda.ExecuteReader();
