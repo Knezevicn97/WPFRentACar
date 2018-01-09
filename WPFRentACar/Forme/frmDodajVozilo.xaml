@@ -12,7 +12,7 @@
 		<Label Content="Vozac" HorizontalAlignment="Left" Margin="11,290,0,0" VerticalAlignment="Top"/>
 		<Label Content="Dodatna oprema" HorizontalAlignment="Left" Margin="10,335,0,0" VerticalAlignment="Top"/>
 		<Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="26" Margin="20,390,0,0" VerticalAlignment="Top" Width="100" Click="btnSacuvaj_Click"/>
-		<Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Height="26" Margin="170,390,0,0" VerticalAlignment="Top" Width="100" Click="btnOtkazi_Click"/>
+		<Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Height="26" Margin="170,390,0,0" VerticalAlignment="Top" Width="100" Click="btnZatvori_Click"/>
 		<ComboBox HorizontalAlignment="Left" Margin="151,245,0,0" VerticalAlignment="Top" Width="120" Name="cbModel" DisplayMemberPath="Model" SelectedValuePath="ModelID"/>
 		<ComboBox HorizontalAlignment="Left" Margin="151,200,0,0" VerticalAlignment="Top" Width="120" Name="cbMarka" DisplayMemberPath="Marka" SelectedValuePath="MarkaID"/>
 		<ComboBox HorizontalAlignment="Left" Margin="151,155,0,0" VerticalAlignment="Top" Width="120" Name="cbTip" DisplayMemberPath="TipVozila" SelectedValuePath="TipVozilaID"/>

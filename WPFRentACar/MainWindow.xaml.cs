@@ -374,6 +374,13 @@ namespace WPFRentACar
 			prozor.ShowDialog();
 			Button_Click_Tipovi(sender, e);
 		}
+		private void Button_DodajVozaca_Click(object sender, RoutedEventArgs e)
+		{
+			DodajVozaca prozor = new DodajVozaca();
+			prozor.ShowDialog();
+			Button_Click_Vozaci(sender, e);
+		}
+
 
 		private void btnObrisiKorisnika_Click(object sender, RoutedEventArgs e)
 		{
@@ -541,7 +548,76 @@ namespace WPFRentACar
 				Button_Click_Vozila(sender, e);
 			}
 		}
+		private void btnObrisiVozaca_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				konekcija.Open();
+				DataRowView red = (DataRowView)CentralniGrid.SelectedItems[0];
+				string upit = "Delete from tblVozac where VozacID=" + red["ID"];
 
+				MessageBoxResult rezultat = MessageBox.Show("Da li ste sigurni?", "Upozorenje",
+				MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (rezultat == MessageBoxResult.Yes)
+				{
+					SqlCommand cmd = new SqlCommand(upit, konekcija);
+					cmd.ExecuteNonQuery();
+				}
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				MessageBox.Show("Potrebno je selektovati odgovarajuci red!", "Greska");
+			}
+			catch (SqlException)
+			{
+				MessageBox.Show("Postoje povezani podaci u drugim tabelama!", "greska");
+			}
+			finally
+			{
+				if (konekcija != null)
+				{
+					konekcija.Close();
+				}
+				Button_Click_Vozaci(sender, e);
+			}
+		}
+		private void btnIzmeniVozaca_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				azuriraj = true;
+				DodajVozaca prozor = new DodajVozaca();
+
+				konekcija.Open();
+				DataRowView red = (DataRowView)CentralniGrid.SelectedItems[0];
+				selektovan = red;
+				string upit = "Select ImeVozaca, PrezimeVozaca, BrojVozacke from tblVozac where VozacID=" + red["ID"];
+
+				SqlCommand komanda = new SqlCommand(upit, konekcija);
+				SqlDataReader citac = komanda.ExecuteReader();
+
+				while (citac.Read())
+				{
+					prozor.txtImeVozaca.Text = citac["ImeVozaca"].ToString();
+					prozor.txtPrezimeVozaca.Text = citac["PrezimeVozaca"].ToString();
+					prozor.txtBrojVozacke.Text = citac["BrojVozacke"].ToString();
+				}
+				prozor.ShowDialog();
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				MessageBox.Show("Potrebno je selektovati odgovarajuci red!");
+			}
+			finally
+			{
+				if (konekcija != null)
+				{
+					konekcija.Close();
+				}
+				Button_Click_Vozaci(sender, e);
+				azuriraj = false;
+			}
+		}
 		private void btnIzmeniMarku_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -737,8 +813,6 @@ namespace WPFRentACar
 				azuriraj = false;
 			}
 		}
-
-
 
 	}
 }
