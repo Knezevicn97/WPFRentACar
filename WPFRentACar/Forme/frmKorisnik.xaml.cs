@@ -17,29 +17,43 @@ using System.Data.SqlClient;
 namespace WPFRentACar.Forme
 {
 	/// <summary>
-	/// Interaction logic for Window1.xaml
+	/// Interaction logic for DodajKorisnika.xaml
 	/// </summary>
-	public partial class DodajVlasnika : Window
+	public partial class DodajKorisnika : Window
 	{
 		public SqlConnection konekcija = Konekcija.KreirajKonekciju();
 
-		public DodajVlasnika()
+		public DodajKorisnika()
 		{
 	
 			InitializeComponent();
-			txtImeKorisnika.Focus();
+			txtIme.Focus();
 		}
 		private void btnSacuvaj_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				konekcija.Open();
+				if (MainWindow.azuriraj)
+				{
+					DataRowView red = (DataRowView)MainWindow.selektovan;
+					string update = @"Update tblKorisnik Set ImeKorisnika ='" + txtIme.Text +  "' , PrezimeKorisnika = '" + txtPrezime.Text + 
+						"', JMBG = '" + txtJMBG.Text + "', Adresa = '" + txtAdresa.Text + "', Grad = '" + txtGrad.Text + "' , Kontakt = '" + txtKontakt.Text + "' , BrojVozacke = '" + txtBrojVozacke.Text + 
+						"' Where KorisnikID =" + red["ID"];
+
+					SqlCommand cmd = new SqlCommand(update, konekcija);
+					cmd.ExecuteNonQuery();
+					MainWindow.selektovan = null;
+					this.Close();
+				}
+				else
+				{
 					string insert = @"insert into tblKorisnik(ImeKorisnika, PrezimeKorisnika, JMBG , Adresa, Grad, Kontakt, BrojVozacke)
-                                values ('" + txtImeKorisnika.Text + "', '" + txtPrezimeKorisnika.Text + "', '" + txtJMBG.Text+ "', '" + txtBrojVozacke.Text + "', '" + txtAdresa.Text + "', '" + txtKontakt.Text + "', '" + txtGrad.Text + "');";
+                                values ('" + txtIme.Text + "', '" + txtPrezime.Text + "', '" + txtJMBG.Text + "', '" + txtAdresa.Text  + "', '" + txtGrad.Text + "', '" + txtKontakt.Text + "', '" + txtBrojVozacke.Text + "');";
 					SqlCommand cmd = new SqlCommand(insert, konekcija);
 					cmd.ExecuteNonQuery();
-					this.Close(); //zatvori prozor
-				
+					this.Close(); 
+				}
 			}
 			catch (SqlException)
 			{

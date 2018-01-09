@@ -54,10 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Forme\frmMarka.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forme\frmKorisnik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,7 +66,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forme\frmIzaberiteVozilo.xaml">
+    <Page Include="Forme\frmDodajVozilo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forme\frmMarka.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forme\frmVozaci.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,9 +86,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Forme\frmMarka.xaml.cs">
-      <DependentUpon>frmMarka.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forme\frmKorisnik.xaml.cs">
       <DependentUpon>frmKorisnik.xaml</DependentUpon>
     </Compile>
@@ -94,8 +95,14 @@
     <Compile Include="Forme\frmTipVozila.xaml.cs">
       <DependentUpon>frmTipVozila.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forme\frmIzaberiteVozilo.xaml.cs">
-      <DependentUpon>frmIzaberiteVozilo.xaml</DependentUpon>
+    <Compile Include="Forme\frmDodajVozilo.xaml.cs">
+      <DependentUpon>frmDodajVozilo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\frmMarka.xaml.cs">
+      <DependentUpon>frmMarka.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\frmVozaci.xaml.cs">
+      <DependentUpon>frmVozaci.xaml</DependentUpon>
     </Compile>
     <Compile Include="Konekcija.cs" />
     <Compile Include="MainWindow.xaml.cs">

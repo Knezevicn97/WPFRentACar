@@ -34,13 +34,24 @@ namespace WPFRentACar.Forme
 			try
 			{
 				konekcija.Open();
-				
+				if (MainWindow.azuriraj)
+				{
+					DataRowView red = (DataRowView)MainWindow.selektovan;
+					string update = @"Update tblTipVozila set Tip ='" + txtNazivTipaVozila.Text + "' Where TipVozilaID =" + red["ID"];
+
+					SqlCommand cmd = new SqlCommand(update, konekcija);
+					cmd.ExecuteNonQuery();
+					MainWindow.selektovan = null;
+					this.Close();
+				}
+				else
+				{
 					string insert = @"insert into tblTipVozila(Tip)
-                                values ('" + txtTip.Text + "');";
+                                values ('" + txtNazivTipaVozila.Text + "');";
 					SqlCommand cmd = new SqlCommand(insert, konekcija);
 					cmd.ExecuteNonQuery();
-					this.Close(); //zatvori prozor
-				
+					this.Close();
+				}
 			}
 			catch (SqlException)
 			{

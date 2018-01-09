@@ -33,14 +33,25 @@ namespace WPFRentACar.Forme
 		{
 			try
 			{
+
 				konekcija.Open();
-				
-					string insert = @"insert into tblMarka(Marka)
-                                values ('" + txtMarka.Text + "');";
+				if (MainWindow.azuriraj)
+				{
+					DataRowView red = (DataRowView)MainWindow.selektovan;
+					string update = @"Update tblMarka set Marka ='" + txtNazivMarke.Text + "' Where MarkaID=" + red["ID"];
+
+					SqlCommand cmd = new SqlCommand(update, konekcija);
+					cmd.ExecuteNonQuery();
+					MainWindow.selektovan = null;
+					this.Close();
+				}
+				else
+				{
+					string insert = @"insert into tblMarka(Marka) values ('" + txtNazivMarke.Text + "');";
 					SqlCommand cmd = new SqlCommand(insert, konekcija);
 					cmd.ExecuteNonQuery();
-					this.Close(); //zatvori prozor
-				
+					this.Close();
+				}
 			}
 			catch (SqlException)
 			{

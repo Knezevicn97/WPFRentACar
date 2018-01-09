@@ -17,13 +17,13 @@ using System.Data.SqlClient;
 namespace WPFRentACar.Forme
 {
     /// <summary>
-    /// Interaction logic for IzaberiteVozilo.xaml
+    /// Interaction logic for DodajVozilo.xaml
     /// </summary>
-    public partial class IzaberiteVozilo : Window
+    public partial class DodajVozilo : Window
     {
 		SqlConnection konekcija = Konekcija.KreirajKonekciju();
 
-        public IzaberiteVozilo()
+        public DodajVozilo()
         {
             InitializeComponent();
 			try
@@ -72,13 +72,23 @@ namespace WPFRentACar.Forme
 			try
 			{
 				konekcija.Open();
-
-				string insert = @" insert into tblVozilo(TipVozilaID, MarkaID, ModelID, VozacID, DodatnaOpremaID)
-								values ('" + cbTip.SelectedValue + ", " + cbMarka.SelectedValue + ", " + cbModel.SelectedValue + ", " + cbVozac.SelectedValue + ", " + cbDodatnaOprema.SelectedValue + ")";
-				SqlCommand cmd = new SqlCommand(insert, konekcija);
-				cmd.ExecuteNonQuery();
-				this.Close();
-
+				if (MainWindow.azuriraj)
+				{
+					DataRowView red = (DataRowView)MainWindow.selektovan;
+					string upit = @"Update tblVozilo Set BrojSasije ='" + txtBrojSasije.Text + "' , Kubikaza = " + txtKubikaza.Text + "," + " KonjskaSnaga = " + txtKonjskaSnaga.Text + " , MarkaID =" + cbMarka.SelectedValue + ", " + " ModelID =" + cbModel.SelectedValue + " , TipVozilaID =" + cbTip.SelectedValue + " ," + " VozacID = " + cbVozac.SelectedValue + "DodatnaOprema =" + cbDodatnaOprema.SelectedValue + "Where VoziloID = " + red["ID"];
+					SqlCommand cmd = new SqlCommand(upit, konekcija);
+					cmd.ExecuteNonQuery();
+					MainWindow.selektovan = null;
+					this.Close();
+				}
+				else
+				{
+					string insert = @" insert into tblVozilo(TipVozilaID, MarkaID, ModelID, VozacID, DodatnaOpremaID, BrojSasije, Kubikaza, KonjskaSnaga)
+								values ('" + cbTip.SelectedValue + ", " + cbMarka.SelectedValue + ", " + cbModel.SelectedValue + ", " + cbVozac.SelectedValue + ", " + cbDodatnaOprema.SelectedValue + ", " + txtBrojSasije + ", " + txtKubikaza + ", " + txtKonjskaSnaga + ")";
+					SqlCommand cmd = new SqlCommand(insert, konekcija);
+					cmd.ExecuteNonQuery();
+					this.Close();
+				}
 			}
 			catch (SqlException)
 			{
