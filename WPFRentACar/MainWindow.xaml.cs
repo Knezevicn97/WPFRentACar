@@ -29,7 +29,24 @@ namespace WPFRentACar
 			try
 			{
 				konekcija.Open();
-				string upit = @"Select ";
+                // kad dodajes ovo moras ispisati ceo query :D
+				string upit = @"select BrojSasije as 'Broj sasije', 
+                                Kubikaza, 
+                                KonjskaSnaga as 'Konjskih snaga', 
+                                Boja, 
+                                SaVozacem as 'Sa vozacem',
+                                Username as 'Agent',
+                                Tip as 'Tip',
+                                Marka as 'Marka',
+                                Model as 'Model',
+                                Navigacija as 'Navigacija',
+                                Automatik as 'Automatik'
+                                from tblVozilo
+                                inner join tblAgent on tblVozilo.AgentID = tblAgent.AgentID
+                                inner join tblTipVozila on tblVozilo.TipVozilaID = tblTipVozila.TipVozilaID
+                                inner join tblMarka on tblVozilo.MarkaID = tblMarka.MarkaID
+                                inner join tblModel on tblVozilo.ModelID = tblModel.ModelID
+                                inner join tblDodatnaOprema on tblVozilo.DodatnaOpremaID = tblDodatnaOprema.DodatnaOpremaID";
 				SqlDataAdapter dataAdapter = new SqlDataAdapter(upit, konekcija);
 				DataTable dt = new DataTable("Vozilo");
 				dataAdapter.Fill(dt);

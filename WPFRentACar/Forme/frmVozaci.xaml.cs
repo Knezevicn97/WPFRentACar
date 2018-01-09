@@ -46,8 +46,8 @@ namespace WPFRentACar.Forme
 				}
 				else
 				{
-					string insert = @"insert into tblVozac(ImeVozaca)
-                                values ('" + txtImeVozaca.Text + "');";
+                    // ako nece da ubaci uvek proveri prvo ove query-je oni su uglavnom problem, a nece javljati gresku sami
+					string insert = @"insert into tblVozac(ImeVozaca, PrezimeVozaca, BrojVozacke) values ('" + txtImeVozaca.Text + "', '" + txtPrezimeVozaca.Text + "', '" + txtBrojVozacke.Text + "')";
 					SqlCommand cmd = new SqlCommand(insert, konekcija);
 					cmd.ExecuteNonQuery();
 					this.Close();

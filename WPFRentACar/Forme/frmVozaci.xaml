@@ -13,9 +13,9 @@
 		<Label Content="Broj Vozacke" HorizontalAlignment="Left" Margin="29,165,0,0" VerticalAlignment="Top"/>
 		<Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="26" Margin="20,221,0,0" VerticalAlignment="Top" Width="100" Click="btnSacuvaj_Click"/>
 		<Button x:Name="btnOtkazi" Content="Otkazi" HorizontalAlignment="Left" Height="26" Margin="170,221,-145,0" VerticalAlignment="Top" Width="100" Click="btnOtkazi_Click"/>
-		<TextBox x:Name="txtImeVozaca" HorizontalAlignment="Left" Height="23" Margin="162,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-		<TextBox x:Name="txtPrezimeVozaca" HorizontalAlignment="Left" Height="23" Margin="162,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-		<TextBox x:Name="txtBrojVozacke" HorizontalAlignment="Left" Height="23" Margin="162,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="txtImeVozaca" HorizontalAlignment="Left" Height="23" Margin="162,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="txtPrezimeVozaca" HorizontalAlignment="Left" Height="23" Margin="162,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="txtBrojVozacke" HorizontalAlignment="Left" Height="23" Margin="162,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 	</Grid>
 </Window>

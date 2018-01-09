@@ -29,31 +29,39 @@ namespace WPFRentACar.Forme
 			try
 			{
 				konekcija.Open();
+
+                // tipovi vozila
 				string vratiTipVozila = @"select TipVozilaID, Tip from tblTipVozila";
 				DataTable dtTip = new DataTable();
 				SqlDataAdapter daTip = new SqlDataAdapter(vratiTipVozila, konekcija);
 				daTip.Fill(dtTip);
 				cbTip.ItemsSource = dtTip.DefaultView;
+                cbTip.SelectedIndex = 0; // postavlja selektovanu prvu vrednost (stavi ako hoces za svaki od ovih check boxeva, da ne budu prazni)
 
+                // marke vozila
 				string vratiMarke = @"select MarkaID, Marka from tblMarka";
 				DataTable dtMarka = new DataTable();
 				SqlDataAdapter daMarka = new SqlDataAdapter(vratiMarke, konekcija);
 				daMarka.Fill(dtMarka);
 				cbMarka.ItemsSource = dtMarka.DefaultView;
 
+                // modeli vozila
 				string vratiModele = @"select ModelID, Model from tblModel";
 				DataTable dtModel = new DataTable();
 				SqlDataAdapter daModel = new SqlDataAdapter(vratiModele, konekcija);
 				daModel.Fill(dtModel);
 				cbModel.ItemsSource = dtModel.DefaultView;
 
-				string vratiVozace = @"select VozacID, ImeVozaca , PrezimeVozaca, BrojVozacke from tblVozac";
+                // vozaci
+				string vratiVozace = @"select VozacID, ImeVozaca + ' ' + PrezimeVozaca as 'Vozac' from tblVozac";
 				DataTable dtVozac = new DataTable();
 				SqlDataAdapter daVozac = new SqlDataAdapter(vratiVozace, konekcija);
 				daVozac.Fill(dtVozac);
 				cbVozac.ItemsSource = dtVozac.DefaultView;
 
-				string vratiDodatnuOpremu = @"select DodatnaOpremaID, Navigacija, Automatik from tblDodatnaOprema";
+                // oprema
+                // dodaj neki label ili nesto da se zna da je N navigacija a A automatik, i u tabeli za dodatnu opremu ne bi trebalo da imas vise od 4 reda jer postoje samo 4 kombinacije navigacije i automatika (0:0, 1:0, 1:1, 0:1)
+				string vratiDodatnuOpremu = @"select DodatnaOpremaID, 'N: ' + CAST(Navigacija as nvarchar(30)) + ', A: ' + CAST(Automatik as nvarchar(30)) as Oprema from tblDodatnaOprema";
 				DataTable dtDodatnaOprema = new DataTable();
 				SqlDataAdapter daDodatnaOprema = new SqlDataAdapter(vratiDodatnuOpremu, konekcija);
 				daDodatnaOprema.Fill(dtDodatnaOprema);
@@ -83,8 +91,10 @@ namespace WPFRentACar.Forme
 				}
 				else
 				{
-					string insert = @" insert into tblVozilo(TipVozilaID, MarkaID, ModelID, VozacID, DodatnaOpremaID, BrojSasije, Kubikaza, KonjskaSnaga)
-								values ('" + cbTip.SelectedValue + ", " + cbMarka.SelectedValue + ", " + cbModel.SelectedValue + ", " + cbVozac.SelectedValue + ", " + cbDodatnaOprema.SelectedValue + ", " + txtBrojSasije + ", " + txtKubikaza + ", " + txtKonjskaSnaga + ")";
+                    // Moras u bazi promeniti foreign keyeve za ovu bazu jer nije dobro uradjeno a ja nmg sad to
+                    // Takodje, kad se ucita aplikacija, napravi da se prvo vide dole dugmici za dodaj promeni obrisi VOZILA a ne korisnika, posto je trenutno korisnika
+					string insert = @"insert into tblVozilo(TipVozilaID, MarkaID, ModelID, VozacID, DodatnaOpremaID, BrojSasije, Kubikaza, KonjskaSnaga)
+								values(" + cbTip.SelectedValue + ", " + cbMarka.SelectedValue + ", " + cbModel.SelectedValue + ", " + cbVozac.SelectedValue + ", " + cbDodatnaOprema.SelectedValue + ", '" + txtBrojSasije.Text + "', " + txtKubikaza.Text + ", " + txtKonjskaSnaga.Text + ")";
 					SqlCommand cmd = new SqlCommand(insert, konekcija);
 					cmd.ExecuteNonQuery();
 					this.Close();
